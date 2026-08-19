@@ -78,36 +78,54 @@ const screenMainLogic = {
 
     showFixed() {
         const cont = $('container-1'), fixed = $('fixed-message'), btn = $('btn-next');
-        const bgImage = $('main-bg-image'); // Capturamos la imagen de fondo actual
+        const bgImage = $('main-bg-image');
+        const collageVideo = $('collage-video'); // Capturamos el nuevo video
 
         cont.style.opacity = 0;
 
-        // 1. Ocultamos la imagen de fondo actual rápido (en medio segundo)
+        // 1. Ocultamos la imagen de fondo actual
         bgImage.style.transition = "opacity 0.5s ease";
         bgImage.style.opacity = 0;
 
         setTimeout(() => {
             cont.style.display = 'none';
 
-            // 2. Cambiamos la foto por la de ustedes y la hacemos aparecer suavemente
-            bgImage.src = "Pictures/madrehija.jpeg"; // <--- PON AQUÍ EL NOMBRE DE TU NUEVA FOTO
-            bgImage.style.transition = "opacity 2s ease";
-            bgImage.style.opacity = 1;
+            // 2. Mostramos y reproducimos el video del collage
+            // 2. Mostramos y reproducimos el video del collage
+            collageVideo.style.transition = "opacity 2s ease";
+            collageVideo.style.opacity = 1;
 
-            // 3. Mostramos el mensaje fijo
-            fixed.style.display = 'block';
-            setTimeout(() => fixed.style.opacity = 1, 50);
+            // Intentamos reproducir el video con protección contra errores
+            let playPromise = collageVideo.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(error => {
+                    console.log("El navegador bloqueó el video:", error);
+                    // Si el video falla, forzamos que al menos pase a la siguiente parte rápido
+                    setTimeout(() => {
+                        fixed.style.display = 'block';
+                        setTimeout(() => fixed.style.opacity = 1, 50);
+                    }, 2000);
+                });
+            }
 
-            // Continuamos con el flujo normal para ocultar el mensaje y mostrar el botón
+            // 3. A los 23 segundos mostramos el "Te amamos"
             setTimeout(() => {
+                fixed.style.display = 'block';
+                setTimeout(() => fixed.style.opacity = 1, 50);
+            }, 23000);
+
+            // 4. Cuando el video termine, pasamos al botón de continuar
+            collageVideo.onended = () => {
                 fixed.style.opacity = 0;
+
                 setTimeout(() => {
                     fixed.style.display = 'none';
                     btn.style.display = 'block';
                     void btn.offsetWidth;
                     btn.style.opacity = 1;
                 }, 800);
-            }, 5000);
+            };
+
         }, 500);
     }
 };

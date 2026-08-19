@@ -123,6 +123,10 @@
     <div id="screen-main" class="screen">
         <!-- Reemplazamos el video por una imagen y le cambiamos el ID -->
         <img class="video-background" id="main-bg-image" src="Pictures/aguapanelazo.jpeg" alt="Fondo">
+        <!-- Agregamos muted y preload="auto" -->
+        <video class="video-background" id="collage-video" playsinline muted preload="auto" style="opacity: 0; z-index: 1;">
+            <source src="Pictures/te_amamos.mp4" type="video/mp4">
+        </video>
         <div class="video-overlay"></div>
 
         <div id="collage"></div>
