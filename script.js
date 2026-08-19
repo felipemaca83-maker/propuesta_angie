@@ -340,5 +340,15 @@ function fadeInAudio(audio, duration) {
 //         window.location.href = "https://www.youtube.com/watch?v=-MsWR_FGa6U&list=RD-MsWR_FGa6U&start_radio=1";
 //     }, 1500);
 // }
+function abrirPista() {
+    // 1. Mostrar la ventana emergente con la pista del armario
+    $('modal-pista').style.display = 'flex';
 
+    // 2. Apagar la música suavemente (2 segundos de desvanecimiento)
+    const musicaPrincipal = $('musica');
+    if (musicaPrincipal) {
+        // Usamos la función fadeOutAudio que ya tienes en tu código
+        fadeOutAudio(musicaPrincipal, 2000);
+    }
+}
 window.onload = createParticles;

@@ -25,7 +25,7 @@
             <!-- El botón Saltar lleva a las INDICACIONES -->
             <button class="btn-generic" style="display: inline-block; opacity: 0.8; font-size: 1.2rem;"
                 onclick="changeScreen('screen-welcome','screen-prep')">
-                Continuemos ⏭️
+                Continuemos PRUEBA ⏭️
             </button>
         </div>
     </div>
@@ -124,7 +124,8 @@
         <!-- Reemplazamos el video por una imagen y le cambiamos el ID -->
         <img class="video-background" id="main-bg-image" src="Pictures/aguapanelazo.jpeg" alt="Fondo">
         <!-- Agregamos muted y preload="auto" -->
-        <video class="video-background" id="collage-video" playsinline muted preload="auto" style="opacity: 0; z-index: 1;">
+        <video class="video-background" id="collage-video" playsinline muted preload="auto"
+            style="opacity: 0; z-index: 1;">
             <source src="Pictures/te_amamos.mp4" type="video/mp4">
         </video>
         <div class="video-overlay"></div>
@@ -159,12 +160,13 @@
         </div>
 
         <!-- Agregamos position: relative y z-index: 50 para ponerlo encima del video -->
-        <div id="fixed-message" style="display:none; opacity:0; text-align:center; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 100; width: 100%; pointer-events: none;">
+        <div id="fixed-message"
+            style="display:none; opacity:0; text-align:center; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 100; width: 100%; pointer-events: none;">
             <h1 style="font-size:2.5rem; text-shadow: 2px 2px 15px rgba(0,0,0,1);">Te amamos inmensamente ✨</h1>
         </div>
 
-        <button class="btn-generic" id="btn-next"
-            onclick="changeScreen('screen-main','screen-carrusel')">Continuar prueba2</button>
+        <button class="btn-generic" id="btn-next" onclick="changeScreen('screen-main','screen-carrusel')">Continuar
+            prueba2</button>
     </div>
 
     <!-- PANTALLA CARRUSEL -->
@@ -183,20 +185,20 @@
             </div>
 
             <div class="carrusel">
-                <div class="slide activa"><img src="Pictures/tap.jpeg" alt="Foto 1"></div>                
+                <div class="slide activa"><img src="Pictures/tap.jpeg" alt="Foto 1"></div>
                 <div class="slide"><img src="Pictures/primer_foto.jpeg" alt="Foto 2"></div>
                 <div class="slide"><img src="Pictures/manos.jpeg" alt="Foto 3"></div>
                 <div class="slide"><img src="Pictures/churos.jpeg" alt="Foto 4"></div>
                 <div class="slide"><img src="Pictures/madrehija.jpeg" alt="Foto 5"></div>
                 <div class="slide"><img src="Pictures/encaje.jpeg" alt="Foto 6"></div>
 
-                
+
                 <div class="slide">
                     <img src="Pictures/espejo.jpeg" alt="Foto 4">
                     <button class="btn-generic siguiente-carrusel"
                         style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); display: block; opacity: 1; font-size: 1rem; padding: 10px 20px;">Siguiente
                         Capítulo</button>
-                        <!-- <button class="btn-generic" onclick="changeScreen('screen-carrusel','screen-final')"
+                    <!-- <button class="btn-generic" onclick="changeScreen('screen-carrusel','screen-final')"
                             style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); display: block; opacity: 1; font-size: 1rem; padding: 10px 20px;">Leer
                             mensaje final 💌</button> -->
                 </div>
@@ -278,39 +280,54 @@
             </div>
         </div>
 
-<!-- PANTALLA FINAL CON TEXTO MEJORADO -->
-        <div id="final-layout" style="display:none; opacity:0; transition: opacity 2s ease; text-align:center; flex-direction:column; justify-content:space-between; align-items:center; position:fixed; inset:0; background-size:cover; background-position: center; z-index:600; padding: 10vh 20px;">
-            
+        <!-- PANTALLA FINAL CON TEXTO MEJORADO -->
+        <div id="final-layout"
+            style="display:none; opacity:0; transition: opacity 2s ease; text-align:center; flex-direction:column; justify-content:space-between; align-items:center; position:fixed; inset:0; background-size:cover; background-position: center; z-index:600; padding: 10vh 20px;">
+
             <!-- Cuadro translúcido para que las letras se lean perfecto y no tapen sus caras -->
             <div class="glass-box" style="padding: 20px 30px; margin-top: 5vh;">
-                <h1 style="font-size:2.2rem; color:#ffffff; text-shadow: 2px 2px 8px rgba(0,0,0,0.9); margin: 0; font-family: 'Georgia', serif;">Te amo, Angie Tatiana ❤️</h1>
-                <p style="font-size: 1.2rem; color: #f0f0f0; font-style: italic; margin-top: 10px; font-family: 'Georgia', serif;">Gracias por existir ✨</p>
+                <h1
+                    style="font-size:2.2rem; color:#ffffff; text-shadow: 2px 2px 8px rgba(0,0,0,0.9); margin: 0; font-family: 'Georgia', serif;">
+                    Te amo, Angie Tatiana ❤️</h1>
+                <p
+                    style="font-size: 1.2rem; color: #f0f0f0; font-style: italic; margin-top: 10px; font-family: 'Georgia', serif;">
+                    Gracias por existir ✨</p>
             </div>
 
             <!-- Botón que ahora abre la pista -->
-            <button class="btn-generic btn-pulse" onclick="$('modal-pista').style.display='flex'" style="display:inline-block; opacity:1; margin-bottom: 5vh;">
+            <!-- Botón que ahora abre la pista y apaga la música -->
+            <button class="btn-generic btn-pulse" onclick="abrirPista()"
+                style="display:inline-block; opacity:1; margin-bottom: 5vh;">
                 Tengo una sorpresa para ti 🎁
             </button>
         </div>
 
         <!-- VENTANA EMERGENTE (LA PISTA DEL ARMARIO) -->
-        <div id="modal-pista" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 1000; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(5px);">
-            <div class="glass-box" style="position: relative; max-width: 400px; width: 100%; text-align: center; border: 1px solid var(--primary);">
+        <div id="modal-pista"
+            style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 1000; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(5px);">
+            <div class="glass-box"
+                style="position: relative; max-width: 400px; width: 100%; text-align: center; border: 1px solid var(--primary);">
 
                 <!-- Botón de Cerrar (La X) -->
-                <div onclick="$('modal-pista').style.display='none'" style="position: absolute; top: -15px; right: -15px; background: var(--primary); color: white; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-family: sans-serif; font-weight: bold; font-size: 20px; box-shadow: 0 0 10px rgba(0,0,0,0.5); z-index: 1001;">
+                <div onclick="$('modal-pista').style.display='none'"
+                    style="position: absolute; top: -15px; right: -15px; background: var(--primary); color: white; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-family: sans-serif; font-weight: bold; font-size: 20px; box-shadow: 0 0 10px rgba(0,0,0,0.5); z-index: 1001;">
                     ✕
                 </div>
 
-                <h2 style="color: var(--primary); font-family: 'Caveat', cursive; font-size: 2.5rem; margin-bottom: 10px;">Una última cosa... 🤫</h2>
-                
-                <p style="font-family: 'Georgia', serif; font-size: 1rem; line-height: 1.6; color: #eee; margin-top: 15px;">
+                <h2
+                    style="color: var(--primary); font-family: 'Caveat', cursive; font-size: 2.5rem; margin-bottom: 10px;">
+                    Una última cosa... 🤫</h2>
+
+                <p
+                    style="font-family: 'Georgia', serif; font-size: 1rem; line-height: 1.6; color: #eee; margin-top: 15px;">
                     ¿Creíste que este detalle terminaba aquí en la pantalla?<br><br>
-                    
-                    Quiero que sepas que esto es solo una pequeña parte de todo lo que mereces. Para descubrir la otra parte, necesito que te levantes y vayas a tu <strong>armario</strong>...<br><br>
-                    
-                    Busca bien, te dejé un pequeño detalle escondido ahí. Espero que te saque otra sonrisa en este día.<br><br>
-                    
+
+                    Quiero que sepas que esto es solo una pequeña parte de todo lo que mereces. Para descubrir la otra
+                    parte, necesito que te levantes y vayas a tu <strong>armario</strong>...<br><br>
+
+                    Busca bien, te dejé un pequeño detalle escondido ahí. Espero que te saque otra sonrisa en este
+                    día.<br><br>
+
                     Gracias por tu amor y por todo lo que haces. Te amo infinitamente. ¡Ve a buscarlo! ❤️
                 </p>
             </div>
