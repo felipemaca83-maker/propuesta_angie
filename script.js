@@ -1,6 +1,6 @@
 const $ = id => document.getElementById(id);
 const musica = $('musica');
-const TIMING = { transition: 800, p2_delay: 2000, p2_scroll: 95000, p3_scroll: 55000, final_scroll: 72000, final_exit_delay: 74000 };
+const TIMING = { transition: 800, p2_delay: 2000, p2_scroll: 95000, p3_scroll: 55000, final_scroll: 72000, final_exit_delay: 72000 };
 
 function createParticles() {
     const containers = ['particle-container', 'welcome-particles', 'prep-particles'];
@@ -37,7 +37,7 @@ function changeScreen(hideId, showId) {
 
     // 2. Detener música previa suavemente
     if (hideId === "screen-prep" && showId === "screen-start") {
-        fadeOutAudio(musicaPrevia, 2500); 
+        fadeOutAudio(musicaPrevia, 2500);
     }
 
     // 3. Iniciar música principal
@@ -65,7 +65,8 @@ const screenMainLogic = {
         setTimeout(() => {
             const cont = $('container-1'), text = $('text-1');
             cont.style.opacity = 1;
-            text.style.animation = `scrollUpShort ${TIMING.p2_scroll / 1000 + 5}s linear forwards`;
+            // Quitamos el + 5 de aquí para que termine exacto con el cronómetro
+            text.style.animation = `scrollUpShort ${TIMING.p2_scroll / 1000}s linear forwards`;
             setTimeout(() => this.showFixed(), TIMING.p2_scroll);
         }, TIMING.p2_delay);
     },
@@ -73,7 +74,7 @@ const screenMainLogic = {
     showFixed() {
         const cont = $('container-1'), fixed = $('fixed-message'), btn = $('btn-next');
         const bgImage = $('main-bg-image');
-        const collageVideo = $('collage-video'); 
+        const collageVideo = $('collage-video');
 
         cont.style.opacity = 0;
 
@@ -103,13 +104,16 @@ const screenMainLogic = {
             }, 27000);
 
             collageVideo.onended = () => {
-                fixed.style.opacity = 0;
+                // Agregamos un cronómetro de 2 segundos extra antes de desaparecer
                 setTimeout(() => {
-                    fixed.style.display = 'none';
-                    btn.style.display = 'block';
-                    void btn.offsetWidth;
-                    btn.style.opacity = 1;
-                }, 800);
+                    fixed.style.opacity = 0;
+                    setTimeout(() => {
+                        fixed.style.display = 'none';
+                        btn.style.display = 'block';
+                        void btn.offsetWidth;
+                        btn.style.opacity = 1;
+                    }, 800);
+                }, 2000); // <-- Aquí están los 2 segundos de visibilidad extra
             };
         }, 500);
     }
@@ -177,7 +181,7 @@ document.querySelectorAll(".carrusel-seccion").forEach(seccion => {
                 setTimeout(() => {
                     textoContenedor.textContent = textosPorSeccion[numSeccion][current];
                     textoContenedor.style.opacity = 1;
-                }, 300); 
+                }, 300);
             }
 
             actualizarDots();
@@ -205,7 +209,7 @@ const screenFinalLogic = {
         const contD = $('container-despedida');
         const textD = $('text-despedida');
 
-        if (!contD || !textD) return; 
+        if (!contD || !textD) return;
 
         contD.style.display = "flex";
 
@@ -223,11 +227,11 @@ const screenFinalLogic = {
                     final.style.display = "flex";
                     void final.offsetWidth;
                     final.style.opacity = 1;
-                }, 1500); 
+                }, 1500);
 
             }, TIMING.final_exit_delay);
 
-        }, 1000); 
+        }, 1000);
     }
 };
 
@@ -242,8 +246,8 @@ function fadeOutAudio(audio, duration) {
         if (audio.volume === prevVolume || audio.volume <= 0) {
             clearInterval(fadeInterval);
             audio.pause();
-            audio.currentTime = 0; 
-            audio.volume = 1;      
+            audio.currentTime = 0;
+            audio.volume = 1;
         }
     }, 100);
 }
@@ -268,7 +272,7 @@ function abrirPista() {
 
     // 2. Apagar DE GOLPE toda la música y videos sin importar el celular
     document.querySelectorAll('audio, video').forEach(media => {
-        media.pause(); 
+        media.pause();
     });
 }
 
