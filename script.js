@@ -112,7 +112,7 @@ const screenMainLogic = {
             setTimeout(() => {
                 fixed.style.display = 'block';
                 setTimeout(() => fixed.style.opacity = 1, 50);
-            }, 23000);
+            }, 27000);
 
             // 4. Cuando el video termine, pasamos al botón de continuar
             collageVideo.onended = () => {
