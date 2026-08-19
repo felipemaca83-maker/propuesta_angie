@@ -158,8 +158,10 @@
             </div>
         </div>
 
-        <div id="fixed-message" style="display:none; opacity:0; text-align:center;">
-            <h1 style="font-size:2.3rem;">Te amamos inmensamente ✨</h1>
+        <!-- Agregamos position: relative y z-index: 50 para ponerlo encima del video -->
+        <div id="fixed-message" style="display:none; opacity:0; text-align:center; position: relative; z-index: 50;">
+            <!-- Le añadimos text-shadow para que resalte sobre cualquier color del video -->
+            <h1 style="font-size:2.5rem; text-shadow: 2px 2px 15px rgba(0,0,0,1);">Te amamos inmensamente ✨</h1>
         </div>
 
         <button class="btn-generic" id="btn-next"
