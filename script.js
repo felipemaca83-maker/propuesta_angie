@@ -341,14 +341,26 @@ function fadeInAudio(audio, duration) {
 //     }, 1500);
 // }
 function abrirPista() {
-    // 1. Mostrar la ventana emergente con la pista del armario
-    $('modal-pista').style.display = 'flex';
+    // 1. Mostrar la ventana emergente
+    const modal = document.getElementById('modal-pista');
+    if (modal) modal.style.display = 'flex';
 
-    // 2. Apagar la música suavemente (2 segundos de desvanecimiento)
-    const musicaPrincipal = $('musica');
-    if (musicaPrincipal) {
-        // Usamos la función fadeOutAudio que ya tienes en tu código
-        fadeOutAudio(musicaPrincipal, 2000);
-    }
+    // 2. Método INFALIBLE para apagar la música:
+    // Atrapa cualquier etiqueta <audio> o <video> que esté sonando en la página
+    const elementosMultimedia = document.querySelectorAll('audio, video');
+
+    elementosMultimedia.forEach(media => {
+        // Hacemos el efecto de desvanecimiento manual aquí mismo
+        let vol = media.volume;
+        let fadeOut = setInterval(() => {
+            if (vol > 0.1) {
+                vol -= 0.1;
+                media.volume = vol;
+            } else {
+                clearInterval(fadeOut);
+                media.pause(); // Apaga la música por completo
+            }
+        }, 200); // Baja el volumen un poco cada 200 milisegundos
+    });
 }
 window.onload = createParticles;
