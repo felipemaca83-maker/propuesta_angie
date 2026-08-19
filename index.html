@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <!-- PANTALLA 0: BIENVENIDA / FILTRO -->
+    <!-- PANTALLA 0: BIENVENIDA -->
     <div id="screen-welcome" class="screen active">
         <div id="welcome-particles" style="position:absolute; width:100%; height:100%; z-index: -1;"></div>
 
@@ -22,29 +22,26 @@
         </p>
 
         <div style="margin-top: 30px; display: flex; flex-direction: column; align-items: center; gap: 20px;">
-            <!-- El botón Saltar lleva a las INDICACIONES -->
             <button class="btn-generic" style="display: inline-block; opacity: 0.8; font-size: 1.2rem;"
                 onclick="changeScreen('screen-welcome','screen-prep')">
-                Continuemos ⏭️ PRUEBAAAAAAAAA12
+                Continuemos ⏭️ Prueba01
             </button>
         </div>
     </div>
 
-    <!-- VENTANA EMERGENTE (MODAL) -->
+    <!-- VENTANA EMERGENTE INICIAL (MODAL) -->
     <div id="modal-info"
         style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 1000; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(5px);">
         <div class="glass-box"
             style="position: relative; max-width: 400px; width: 100%; text-align: center; border: 1px solid var(--primary);">
 
-            <!-- Botón de Cerrar (La X) -->
             <div onclick="$('modal-info').style.display='none'"
                 style="position: absolute; top: -15px; right: -15px; background: var(--primary); color: white; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-family: sans-serif; font-weight: bold; font-size: 20px; box-shadow: 0 0 10px rgba(0,0,0,0.5); z-index: 1001;">
                 ✕
             </div>
 
             <h2 style="color: var(--primary); font-family: 'Caveat', cursive; font-size: 2rem;">Nota Importante</h2>
-            <p
-                style="font-family: 'Georgia', serif; font-size: 0.7rem; line-height: 1.6; color: #eee; margin-top: 10px;">
+            <p style="font-family: 'Georgia', serif; font-size: 0.7rem; line-height: 1.6; color: #eee; margin-top: 10px;">
                 Inicialmente, quería darte este detalle para tu CUMPLEAÑOS. <br> <br>
                 Mi error fue que me apresuré tanto que lo terminé dos meses antes. En mi memoria el día 16 estaba tan
                 presente que con eso bastó para empezar a hacerlo.<br><br>
@@ -119,11 +116,10 @@
             </svg>
         </div>
     </div>
+
     <!-- PANTALLA 2: MAIN -->
     <div id="screen-main" class="screen">
-        <!-- Reemplazamos el video por una imagen y le cambiamos el ID -->
         <img class="video-background" id="main-bg-image" src="Pictures/aguapanelazo.jpeg" alt="Fondo">
-        <!-- Agregamos muted y preload="auto" -->
         <video class="video-background" id="collage-video" playsinline muted preload="auto"
             style="opacity: 0; z-index: 1;">
             <source src="Pictures/te_amamos.mp4" type="video/mp4">
@@ -159,14 +155,12 @@
             </div>
         </div>
 
-        <!-- Agregamos position: relative y z-index: 50 para ponerlo encima del video -->
         <div id="fixed-message"
             style="display:none; opacity:0; text-align:center; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 100; width: 100%; pointer-events: none;">
             <h1 style="font-size:2.5rem; text-shadow: 2px 2px 15px rgba(0,0,0,1);">Te amamos inmensamente ✨</h1>
         </div>
 
-        <button class="btn-generic" id="btn-next" onclick="changeScreen('screen-main','screen-carrusel')">Continuar
-            prueba2</button>
+        <button class="btn-generic" id="btn-next" onclick="changeScreen('screen-main','screen-carrusel')">Continuar</button>
     </div>
 
     <!-- PANTALLA CARRUSEL -->
@@ -191,18 +185,12 @@
                 <div class="slide"><img src="Pictures/churos.jpeg" alt="Foto 4"></div>
                 <div class="slide"><img src="Pictures/madrehija.jpeg" alt="Foto 5"></div>
                 <div class="slide"><img src="Pictures/encaje.jpeg" alt="Foto 6"></div>
-
-
                 <div class="slide">
-                    <img src="Pictures/espejo.jpeg" alt="Foto 4">
+                    <img src="Pictures/espejo.jpeg" alt="Foto 7">
                     <button class="btn-generic siguiente-carrusel"
                         style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); display: block; opacity: 1; font-size: 1rem; padding: 10px 20px;">Siguiente
                         Capítulo</button>
-                    <!-- <button class="btn-generic" onclick="changeScreen('screen-carrusel','screen-final')"
-                            style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); display: block; opacity: 1; font-size: 1rem; padding: 10px 20px;">Leer
-                            mensaje final 💌</button> -->
                 </div>
-
                 <div class="dots"></div>
             </div>
         </section>
@@ -218,19 +206,17 @@
             </div>
 
             <div class="carrusel">
-                <div class="slide activa"><img src="Pictures/carro.jpeg" alt="Foto 5"></div> ejemplo video aqui
-                <div class="slide"><img src="Pictures/primer_regalo.jpeg" alt="Foto 6"></div>
-                <div class="slide"><img src="Pictures/segundo_regalo.jpeg" alt="Foto 7"></div>
-                <div class="slide"><img src="Pictures/tercer_regalo.jpeg" alt="Foto 8"></div>
-                <div class="slide"><img src="Pictures/mirador.jpeg" alt="Foto 9"></div>
-                <div class="slide"><img src="Pictures/silvia.jpeg" alt="Foto 10"></div>
-                <div class="slide"><img src="Pictures/gajes.jpeg" alt="Foto 11"></div>
-                <div class="slide"><img src="Pictures/selfie_mahe.jpeg" alt="Foto 12"></div>
-                <div class="slide"><img src="Pictures/cata_espejo.jpeg" alt="Foto 12"></div>
-                <!-- <div class="slide"><img src="Pictures/mahe_perfil.jpeg" alt="Foto 13"></div> -->
-
+                <div class="slide activa"><img src="Pictures/carro.jpeg" alt="Foto 1"></div>
+                <div class="slide"><img src="Pictures/primer_regalo.jpeg" alt="Foto 2"></div>
+                <div class="slide"><img src="Pictures/segundo_regalo.jpeg" alt="Foto 3"></div>
+                <div class="slide"><img src="Pictures/tercer_regalo.jpeg" alt="Foto 4"></div>
+                <div class="slide"><img src="Pictures/mirador.jpeg" alt="Foto 5"></div>
+                <div class="slide"><img src="Pictures/silvia.jpeg" alt="Foto 6"></div>
+                <div class="slide"><img src="Pictures/gajes.jpeg" alt="Foto 7"></div>
+                <div class="slide"><img src="Pictures/selfie_mahe.jpeg" alt="Foto 8"></div>
+                <div class="slide"><img src="Pictures/cata_espejo.jpeg" alt="Foto 9"></div>
                 <div class="slide">
-                    <img src="Pictures/mahe_perfil.jpeg" alt="Foto 8">
+                    <img src="Pictures/mahe_perfil.jpeg" alt="Foto 10">
                     <button class="btn-generic" onclick="changeScreen('screen-carrusel','screen-final')"
                         style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); display: block; opacity: 1; font-size: 1rem; padding: 10px 20px;">Leer
                         mensaje final 💌</button>
@@ -242,8 +228,6 @@
 
     <!-- PANTALLA 3: FINAL -->
     <div id="screen-final" class="screen" style="background:radial-gradient(circle,#1a1a2e,#000);">
-
-        <!-- Le quitamos el style="display:none;" de aquí: -->
         <div class="scroll-container bg-image-fixed" id="container-despedida">
             <div class="scroll-text glass-box" id="text-despedida">
                 <p>Quiero aprovechar este espacio para agradecerte desde lo más profundo de mi corazón. Gracias por
@@ -280,47 +264,37 @@
             </div>
         </div>
 
-        <!-- PANTALLA FINAL CON TEXTO MEJORADO -->
         <div id="final-layout"
             style="display:none; opacity:0; transition: opacity 2s ease; text-align:center; flex-direction:column; justify-content:space-between; align-items:center; position:fixed; inset:0; background-size:cover; background-position: center; z-index:600; padding: 10vh 20px;">
 
-            <!-- Cuadro translúcido para que las letras se lean perfecto y no tapen sus caras -->
             <div class="glass-box" style="padding: 20px 30px; margin-top: 5vh;">
-                <h1
-                    style="font-size:2.2rem; color:#ffffff; text-shadow: 2px 2px 8px rgba(0,0,0,0.9); margin: 0; font-family: 'Georgia', serif;">
+                <h1 style="font-size:2.2rem; color:#ffffff; text-shadow: 2px 2px 8px rgba(0,0,0,0.9); margin: 0; font-family: 'Georgia', serif;">
                     Te amo, Angie Tatiana ❤️</h1>
-                <p
-                    style="font-size: 1.2rem; color: #f0f0f0; font-style: italic; margin-top: 10px; font-family: 'Georgia', serif;">
+                <p style="font-size: 1.2rem; color: #f0f0f0; font-style: italic; margin-top: 10px; font-family: 'Georgia', serif;">
                     Gracias por existir ✨</p>
             </div>
 
-            <!-- Botón que ahora abre la pista -->
-            <!-- Botón que llama a la función -->
             <button class="btn-generic btn-pulse" onclick="abrirPista()"
                 style="display:inline-block; opacity:1; margin-bottom: 5vh;">
                 Tengo una sorpresa para ti 🎁
             </button>
         </div>
 
-        <!-- VENTANA EMERGENTE (LA PISTA DEL ARMARIO) -->
         <!-- VENTANA EMERGENTE (MODAL DE LA PISTA) -->
         <div id="modal-pista"
             style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 1000; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(5px);">
             <div class="glass-box"
                 style="position: relative; max-width: 400px; width: 100%; text-align: center; border: 1px solid var(--primary);">
 
-                <!-- Botón de Cerrar (La X) -->
                 <div onclick="$('modal-pista').style.display='none'"
                     style="position: absolute; top: -15px; right: -15px; background: var(--primary); color: white; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-family: sans-serif; font-weight: bold; font-size: 20px; box-shadow: 0 0 10px rgba(0,0,0,0.5); z-index: 1001;">
                     ✕
                 </div>
 
-                <h2
-                    style="color: var(--primary); font-family: 'Caveat', cursive; font-size: 2.5rem; margin-bottom: 10px;">
+                <h2 style="color: var(--primary); font-family: 'Caveat', cursive; font-size: 2.5rem; margin-bottom: 10px;">
                     Una última cosa... 🤫</h2>
 
-                <p
-                    style="font-family: 'Georgia', serif; font-size: 1rem; line-height: 1.6; color: #eee; margin-top: 15px;">
+                <p style="font-family: 'Georgia', serif; font-size: 1rem; line-height: 1.6; color: #eee; margin-top: 15px;">
                     ¿Creíste que este detalle terminaba aquí en la pantalla?<br><br>
                     Quiero que sepas que esto es solo una pequeña parte de todo lo que mereces. Para descubrir la otra
                     parte, necesito que te levantes y vayas a tu <strong>armario</strong>...<br><br>
