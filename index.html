@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Ti ✨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- PANTALLA 0: BIENVENIDA / FILTRO -->
+    <div id="screen-welcome" class="screen active">
+        <div id="welcome-particles" style="position:absolute; width:100%; height:100%; z-index: -1;"></div>
+
+        <h1 class="glow-title" style="font-size:3rem; margin-bottom: 20px;">Hola, vida mía</h1>
+
+        <p style="font-size:1.1rem; text-align: center; padding: 0 30px; max-width: 500px; line-height: 1.6;">
+            Esta es una pequeña sorpresa que preparé para ti, un detalle que espero te haga sonreír y recordar lo
+            especial que eres para mí.
+        </p>
+
+        <div style="margin-top: 30px; display: flex; flex-direction: column; align-items: center; gap: 20px;">
+            <!-- El botón Saltar lleva a las INDICACIONES -->
+            <button class="btn-generic" style="display: inline-block; opacity: 0.8; font-size: 1.2rem;"
+                onclick="changeScreen('screen-welcome','screen-prep')">
+                Continuemos ⏭️
+            </button>
+        </div>
+    </div>
+
+    <!-- VENTANA EMERGENTE (MODAL) -->
+    <div id="modal-info"
+        style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 1000; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(5px);">
+        <div class="glass-box"
+            style="position: relative; max-width: 400px; width: 100%; text-align: center; border: 1px solid var(--primary);">
+
+            <!-- Botón de Cerrar (La X) -->
+            <div onclick="$('modal-info').style.display='none'"
+                style="position: absolute; top: -15px; right: -15px; background: var(--primary); color: white; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-family: sans-serif; font-weight: bold; font-size: 20px; box-shadow: 0 0 10px rgba(0,0,0,0.5); z-index: 1001;">
+                ✕
+            </div>
+
+            <h2 style="color: var(--primary); font-family: 'Caveat', cursive; font-size: 2rem;">Nota Importante</h2>
+            <p
+                style="font-family: 'Georgia', serif; font-size: 0.7rem; line-height: 1.6; color: #eee; margin-top: 10px;">
+                Inicialmente, quería darte este detalle para tu CUMPLEAÑOS. <br> <br>
+                Mi error fue que me apresuré tanto que lo terminé dos meses antes. En mi memoria el día 16 estaba tan
+                presente que con eso bastó para empezar a hacerlo.<br><br>
+                Pero al darme cuenta del mes en que realmente estábamos, quedé 🤡. No sé si fue la emoción del momento,
+                pero perdí por completo la noción del tiempo.
+                <br> <br>
+                Mi mente estaba tan nublada que solo veía el 16 de marzo como la fecha correcta... Pero quién sabe...
+                tal vez en dos meses cambien muchas cosas, tal vez no esté tan convencido de que sea lo mas correcto.
+                <br> <br>
+                En pocas palabras, confundí el 16 de Marzo, con el 16 de Mayo.
+                <br> <br>
+                Aun así, quiero dejarte este detalle desde hoy, espero que cuando llegue el momento, o cuando te sientas
+                preparada... lo abras, es con mucho cariño. <br><br>
+                Si decides abrirlo ahora (no lo hagas), cierra esta ventana, dale al botón de "Saltar detalle" y sigue
+                las indicaciones. (No lo veas en la calle, ni en tu trabajo)<br><br>
+            </p>
+        </div>
+    </div>
+
+    <!-- PANTALLA DE PREPARACIÓN -->
+    <div id="screen-prep" class="screen">
+        <div id="prep-particles" style="position:absolute; width:100%; height:100%; z-index: -1;"></div>
+
+        <h1 class="glow-title"
+            style="font-size: 2.2rem; text-align: center; padding: 0 20px; margin-top: 8vh; margin-bottom: 20px;">
+            Antes de comenzar, unas pequeñas recomendaciones: ✨
+        </h1>
+
+        <div class="glass-box" style="margin: 20px; max-width: 500px; text-align: left; padding: 30px;">
+            <ul style="list-style: none; padding: 0; font-size: 1rem; line-height: 2;">
+                <li>📍 Busca un lugar tranquilo (tu habitación sería ideal).</li>
+                <li>🤫 Asegúrate de que no haya mucho ruido alrededor.</li>
+                <li>☀️ Sube un poco el brillo de tu pantalla.</li>
+                <li>🔊 Ajusta el volumen.</li>
+            </ul>
+            <p style="text-align: center; font-style: italic; margin-top: 20px; color: var(--secondary);">
+                Disfruta, es con mucho cariño. ❤️
+            </p>
+        </div>
+
+        <button class="btn-generic btn-pulse" style="display: inline-block; opacity: 1;"
+            onclick="changeScreen('screen-prep','screen-start')">
+            ¡Estoy lista!
+        </button>
+    </div>
+
+    <!-- PANTALLA 1: INICIO -->
+    <div id="screen-start" class="screen">
+        <div id="particle-container" style="position:absolute; width:100%; height:100%;"></div>
+        <h1 class="glow-title" style="font-size:3.5rem; margin-bottom: 10px; position: relative;">Mi bebé...</h1>
+        <p style="font-size:1rem; font-style: italic; opacity: 0.8; text-align: center; padding: 0 20px;">
+            Aunque a veces no entendamos los planes de Dios, siempre hay un propósito en todo lo que sucede. <br><br>
+            Te admiro, y me siento muy orgulloso de ti...
+        </p>
+        <div style="margin-top: 40px; position: relative;">
+            <button class="btn-generic btn-pulse" style="display: inline-block; opacity: 1;"
+                onclick="changeScreen('screen-start','screen-main')">
+                Abrir detalle 🌸
+            </button>
+        </div>
+        <div class="flower-container">
+            <svg class="flower-svg" viewBox="0 0 100 100" width="100%" height="100%">
+                <path class="flower-stem" d="M50,100 C50,80 45,70 50,50" />
+                <g class="flower-head">
+                    <ellipse class="petal petal-back" cx="35" cy="45" rx="10" ry="15" transform="rotate(-30 35 45)" />
+                    <ellipse class="petal petal-back" cx="65" cy="45" rx="10" ry="15" transform="rotate(30 65 45)" />
+                    <ellipse class="petal petal-mid" cx="42" cy="52" rx="12" ry="18" transform="rotate(-15 42 52)" />
+                    <ellipse class="petal petal-mid" cx="58" cy="52" rx="12" ry="18" transform="rotate(15 58 52)" />
+                    <ellipse class="petal petal-center" cx="50" cy="58" rx="15" ry="22" />
+                    <circle class="flower-center" cx="50" cy="58" r="5" />
+                </g>
+            </svg>
+        </div>
+    </div>
+    <!-- PANTALLA 2: MAIN -->
+    <div id="screen-main" class="screen">
+        <!-- Reemplazamos el video por una imagen y le cambiamos el ID -->
+        <img class="video-background" id="main-bg-image" src="Pictures/aguapanelazo.jpeg" alt="Fondo">
+        <div class="video-overlay"></div>
+
+        <div id="collage"></div>
+        <div class="scroll-container" id="container-1">
+            <div class="scroll-text glass-box p2-text-base" id="text-1">
+                Hoy quiero regalarte este pequeño espacio para que por un momento pauses el mundo, respires y olvides la
+                rutina, el cansancio y el peso del día a día...<br><br><br>
+                Sé lo agotadora que puede ser tu jornada, el ambiente tan pesado que a veces enfrentas en el trabajo y
+                el esfuerzo gigante que haces cada amanecer.<br><br><br>
+                Escribo esto porque quiero que te veas a través de mis ojos y de los que te rodean. Tu mamá, tu hermano,
+                tu cuñada, tu tío y toda tu familia ven tu sacrificio diario, admiran tu paciencia infinita y lo
+                increíble que eres como mamá de esas dos hermosas princesas que llenan tu vida.<br><br><br>
+                A pesar de que tu tiempo es tan limitado y terminas exhausta, valoro inmensamente cómo me demuestras tu
+                amor y me das mi lugar. Tu mentalidad ha crecido tanto, y me llena de orgullo verte luchar y no
+                rendirte.<br><br><br>
+                Sé que no somos perfectos, que hemos tenido nuestros problemas y discusiones, pero convivir contigo y
+                salir adelante juntos es mi mayor bendición. A pesar de todo, te sigo eligiendo y cada día te amo
+                más.<br><br><br>
+                Quiero que te quede algo muy claro: ni tu rutina, ni tus problemas, ni el cansancio me harán renunciar a
+                ti. Estoy aquí para ser tu apoyo, para ayudarte a cargar el peso, en las buenas y en las
+                peores.<br><br><br>
+                Me quedaré a tu lado sosteniendo tu mano hasta que Dios nos lo permita, porque somos un equipo y no
+                estás sola en esto.<br><br><br>
+                Sé que Dios ve todo tu esfuerzo, conoce tu corazón y te va a bendecir grandemente por todo lo que haces
+                por los tuyos.<br><br><br>
+                Por eso quiero recordarte esta promesa: "Mira que te mando que te esfuerces y seas valiente; no temas ni
+                desmayes, porque Jehová tu Dios estará contigo en dondequiera que vayas." (Josué 1:9)<br><br><br>
+                Eres mi guerrera, mi amor y mi refugio. Respira profundo, que aquí estoy y aquí me quedo.<br><br><br>
+            </div>
+        </div>
+
+        <div id="fixed-message" style="display:none; opacity:0; text-align:center;">
+            <h1 style="font-size:2.3rem;">Te amamos inmensamente ✨</h1>
+        </div>
+
+        <button class="btn-generic" id="btn-next"
+            onclick="changeScreen('screen-main','screen-carrusel')">Continuar</button>
+    </div>
+
+    <!-- PANTALLA CARRUSEL -->
+    <div id="screen-carrusel" class="screen" style="background: radial-gradient(circle, #1a1a2e, #000);">
+        <div id="carrusel-particles" style="position:absolute; width:100%; height:100%; z-index: -1;"></div>
+
+        <!-- Capítulo 1 -->
+        <section class="carrusel-seccion visible" data-seccion="1" style="display: flex;">
+            <p class="glow-title" style="font-size: 2.5rem; margin-bottom: 10px;">Capítulo 1</p>
+
+            <div class="info-slide-externo glass-box"
+                style="padding: 15px; margin-bottom: 20px; width: 85%; max-width: 400px; text-align: center;">
+                <span id="texto-dinamico-1"
+                    style="font-size: 1.1rem; line-height: 1.5; transition: opacity 0.5s ease;">Toca la foto para
+                    avanzar... ✨</span>
+            </div>
+
+            <div class="carrusel">
+                <div class="slide activa"><img src="Pictures/tap.jpeg" alt="Foto 1"></div>                
+                <div class="slide"><img src="Pictures/primer_foto.jpeg" alt="Foto 2"></div>
+                <div class="slide"><img src="Pictures/manos.jpeg" alt="Foto 3"></div>
+                <div class="slide"><img src="Pictures/churos.jpeg" alt="Foto 4"></div>
+                <div class="slide"><img src="Pictures/madrehija.jpeg" alt="Foto 5"></div>
+                <div class="slide"><img src="Pictures/encaje.jpeg" alt="Foto 6"></div>
+
+                
+                <div class="slide">
+                    <img src="Pictures/espejo.jpeg" alt="Foto 4">
+                    <button class="btn-generic siguiente-carrusel"
+                        style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); display: block; opacity: 1; font-size: 1rem; padding: 10px 20px;">Siguiente
+                        Capítulo</button>
+                        <!-- <button class="btn-generic" onclick="changeScreen('screen-carrusel','screen-final')"
+                            style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); display: block; opacity: 1; font-size: 1rem; padding: 10px 20px;">Leer
+                            mensaje final 💌</button> -->
+                </div>
+
+                <div class="dots"></div>
+            </div>
+        </section>
+
+        <!-- Capítulo 2 -->
+        <section class="carrusel-seccion" data-seccion="2" style="display: none;">
+            <p class="glow-title" style="font-size: 2.5rem; margin-bottom: 10px;">Capítulo 2</p>
+
+            <div class="info-slide-externo glass-box"
+                style="padding: 15px; margin-bottom: 20px; width: 85%; max-width: 400px; text-align: center;">
+                <span style="font-size: 1.1rem; line-height: 1.5; transition: opacity 0.5s ease;">Nuestra historia
+                    continuó... ✨</span>
+            </div>
+
+            <div class="carrusel">
+                <div class="slide activa"><img src="Pictures/carro.jpeg" alt="Foto 5"></div> ejemplo video aqui
+                <div class="slide"><img src="Pictures/primer_regalo.jpeg" alt="Foto 6"></div>
+                <div class="slide"><img src="Pictures/segundo_regalo.jpeg" alt="Foto 7"></div>
+                <div class="slide"><img src="Pictures/tercer_regalo.jpeg" alt="Foto 8"></div>
+                <div class="slide"><img src="Pictures/mirador.jpeg" alt="Foto 9"></div>
+                <div class="slide"><img src="Pictures/silvia.jpeg" alt="Foto 10"></div>
+                <div class="slide"><img src="Pictures/gajes.jpeg" alt="Foto 11"></div>
+                <div class="slide"><img src="Pictures/selfie_mahe.jpeg" alt="Foto 12"></div>
+                <div class="slide"><img src="Pictures/cata_espejo.jpeg" alt="Foto 12"></div>
+                <!-- <div class="slide"><img src="Pictures/mahe_perfil.jpeg" alt="Foto 13"></div> -->
+
+                <div class="slide">
+                    <img src="Pictures/mahe_perfil.jpeg" alt="Foto 8">
+                    <button class="btn-generic" onclick="changeScreen('screen-carrusel','screen-final')"
+                        style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); display: block; opacity: 1; font-size: 1rem; padding: 10px 20px;">Leer
+                        mensaje final 💌</button>
+                </div>
+                <div class="dots"></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- PANTALLA 3: FINAL -->
+    <div id="screen-final" class="screen" style="background:radial-gradient(circle,#1a1a2e,#000);">
+
+        <!-- Le quitamos el style="display:none;" de aquí: -->
+        <div class="scroll-container bg-image-fixed" id="container-despedida">
+            <div class="scroll-text glass-box" id="text-despedida">
+                <p>Quiero aprovechar este espacio para agradecerte desde lo más profundo de mi corazón. Gracias por
+                    abrirme las puertas de tu vida, por derribar tus muros y confiar en mí cuando sé que no siempre es
+                    fácil hacerlo.</p>
+
+                <p>Gracias por el regalo tan inmenso de permitirme conocer, convivir y compartir con tus niñas. Ellas
+                    son un pedacito de tu alma, y ver de cerca la madre tan maravillosa que eres, solo hace que te
+                    admire y te ame aún más.</p>
+
+                <p>Sé que no soy perfecto. Sé que puedo llegar a ser complicado, que a veces mi mal genio me gana y que
+                    tenemos nuestras diferencias. Pero quiero que sepas que todos los días lucho por ser una mejor
+                    persona para ti.</p>
+
+                <p>Mi mayor esfuerzo es darte el lugar que te mereces, honrarte, respetarte y estar a la altura del amor
+                    que me das a diario. Vales cada intento, cada cambio y cada esfuerzo que hago por mejorar.</p>
+
+                <p>A veces el cansancio, la rutina o los problemas nos hacen chocar, pero quiero que siempre recuerdes
+                    esto: <strong>un mal rato no es una mala vida</strong>. Una tormenta pasajera jamás podrá borrar
+                    todo lo hermoso que hemos construido juntos.</p>
+
+                <p>No me queda la menor duda de que eres la mujer de mi vida. Contigo es con quien me proyecto, con
+                    quien quiero construir un hogar, superar obstáculos, alcanzar metas y envejecer. Mi futuro entero lo
+                    visualizo a tu lado.</p>
+
+                <p>Quiero que aquí, conmigo, siempre encuentres tu refugio. Quiero que te sientas segura, protegida,
+                    infinitamente amada y valorada, no solo por todo el esfuerzo que haces día a día, sino simplemente
+                    por ser tú.</p>
+
+                <p>Eres mi paz en medio de tanto caos. Gracias por tu paciencia y por tu amor de todos los días.</p>
+
+                <p>Sigamos caminando juntos, mi amor, de la mano de Dios... porque lo mejor de nuestra historia apenas
+                    comienza. ✨</p>
+            </div>
+        </div>
+
+<!-- PANTALLA FINAL CON TEXTO MEJORADO -->
+        <div id="final-layout" style="display:none; opacity:0; transition: opacity 2s ease; text-align:center; flex-direction:column; justify-content:space-between; align-items:center; position:fixed; inset:0; background-size:cover; background-position: center; z-index:600; padding: 10vh 20px;">
+            
+            <!-- Cuadro translúcido para que las letras se lean perfecto y no tapen sus caras -->
+            <div class="glass-box" style="padding: 20px 30px; margin-top: 5vh;">
+                <h1 style="font-size:2.2rem; color:#ffffff; text-shadow: 2px 2px 8px rgba(0,0,0,0.9); margin: 0; font-family: 'Georgia', serif;">Te amo, Angie Tatiana ❤️</h1>
+                <p style="font-size: 1.2rem; color: #f0f0f0; font-style: italic; margin-top: 10px; font-family: 'Georgia', serif;">Gracias por existir ✨</p>
+            </div>
+
+            <!-- Botón que ahora abre la pista -->
+            <button class="btn-generic btn-pulse" onclick="$('modal-pista').style.display='flex'" style="display:inline-block; opacity:1; margin-bottom: 5vh;">
+                Tengo una sorpresa para ti 🎁
+            </button>
+        </div>
+
+        <!-- VENTANA EMERGENTE (LA PISTA DEL ARMARIO) -->
+        <div id="modal-pista" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 1000; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(5px);">
+            <div class="glass-box" style="position: relative; max-width: 400px; width: 100%; text-align: center; border: 1px solid var(--primary);">
+
+                <!-- Botón de Cerrar (La X) -->
+                <div onclick="$('modal-pista').style.display='none'" style="position: absolute; top: -15px; right: -15px; background: var(--primary); color: white; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-family: sans-serif; font-weight: bold; font-size: 20px; box-shadow: 0 0 10px rgba(0,0,0,0.5); z-index: 1001;">
+                    ✕
+                </div>
+
+                <h2 style="color: var(--primary); font-family: 'Caveat', cursive; font-size: 2.5rem; margin-bottom: 10px;">Una última cosa... 🤫</h2>
+                
+                <p style="font-family: 'Georgia', serif; font-size: 1rem; line-height: 1.6; color: #eee; margin-top: 15px;">
+                    ¿Creíste que este detalle terminaba aquí en la pantalla?<br><br>
+                    
+                    Quiero que sepas que esto es solo una pequeña parte de todo lo que mereces. Para descubrir la otra parte, necesito que te levantes y vayas a tu <strong>armario</strong>...<br><br>
+                    
+                    Busca bien, te dejé un pequeño detalle escondido ahí. Espero que te saque otra sonrisa en este día.<br><br>
+                    
+                    Gracias por tu amor y por todo lo que haces. Te amo infinitamente. ¡Ve a buscarlo! ❤️
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- AUDIO ARCHIVES -->
+    <audio id="musica-previa" loop>
+        <source src="Pictures/musica.mpeg" type="audio/mpeg">
+    </audio>
+    <audio id="musica" loop>
+        <source src="Pictures/musicados.mpeg" type="audio/mpeg">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
