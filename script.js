@@ -1,6 +1,6 @@
 const $ = id => document.getElementById(id);
 const musica = $('musica');
-const TIMING = { transition: 800, p2_delay: 2000, p2_scroll: 95000, p3_scroll: 55000, final_scroll: 72000, final_exit_delay: 72000 };
+const TIMING = { transition: 800, p2_delay: 2000, p2_scroll: 60000, p3_scroll: 55000, final_scroll: 49000, final_exit_delay: 62000 };
 
 function createParticles() {
     const containers = ['particle-container', 'welcome-particles', 'prep-particles'];
@@ -37,7 +37,7 @@ function changeScreen(hideId, showId) {
 
     // 2. Detener música previa suavemente
     if (hideId === "screen-prep" && showId === "screen-start") {
-        fadeOutAudio(musicaPrevia, 2500);
+        fadeOutAudio(musicaPrevia, 2500); 
     }
 
     // 3. Iniciar música principal
@@ -59,22 +59,30 @@ function changeScreen(hideId, showId) {
 }
 
 const screenMainLogic = {
+
     init() {
         setTimeout(() => $('main-bg-image').style.opacity = 1, 100);
         document.querySelectorAll('.foto-marco').forEach((f, i) => setTimeout(() => f.style.opacity = 1, 300 + (i * 2000)));
+        
         setTimeout(() => {
             const cont = $('container-1'), text = $('text-1');
             cont.style.opacity = 1;
-            // Quitamos el + 5 de aquí para que termine exacto con el cronómetro
+            
+            // Asignamos el tiempo de la animación (la velocidad de lectura)
             text.style.animation = `scrollUpShort ${TIMING.p2_scroll / 1000}s linear forwards`;
-            setTimeout(() => this.showFixed(), TIMING.p2_scroll);
+            
+            // NUEVO: Escuchamos exactamente cuándo termina la animación
+            text.addEventListener('animationend', () => {
+                this.showFixed(); // Continúa automáticamente sin delay
+            }, { once: true }); // once: true asegura que solo se ejecute una vez
+            
         }, TIMING.p2_delay);
     },
 
     showFixed() {
         const cont = $('container-1'), fixed = $('fixed-message'), btn = $('btn-next');
         const bgImage = $('main-bg-image');
-        const collageVideo = $('collage-video');
+        const collageVideo = $('collage-video'); 
 
         cont.style.opacity = 0;
 
@@ -103,17 +111,18 @@ const screenMainLogic = {
                 setTimeout(() => fixed.style.opacity = 1, 50);
             }, 27000);
 
+            // 4. Cuando el video termine, pasamos al botón de continuar
             collageVideo.onended = () => {
                 // Agregamos un cronómetro de 2 segundos extra antes de desaparecer
                 setTimeout(() => {
                     fixed.style.opacity = 0;
                     setTimeout(() => {
                         fixed.style.display = 'none';
-                        btn.style.display = 'block';
+                        btn.style.display = 'flex'; // <--- CAMBIA 'block' POR 'flex' AQUÍ
                         void btn.offsetWidth;
                         btn.style.opacity = 1;
                     }, 800);
-                }, 2000); // <-- Aquí están los 2 segundos de visibilidad extra
+                }, 2000); 
             };
         }, 500);
     }
@@ -124,6 +133,27 @@ document.querySelectorAll(".carrusel-seccion").forEach(seccion => {
     const slides = seccion.querySelectorAll(".slide");
     const dotsContainer = seccion.querySelector(".dots");
     let current = 0;
+
+    // Los textos exactos para tus 17 fotos
+    const textos = [
+        "Toca la foto para avanzar... ✨",
+        "Nuestra primera foto... Recuerdo cuando me pediste tomarla; en el fondo sentí que ahí empezábamos a enmarcar nuestra historia.",
+        "Tu mano entrelazada con la mía... una sensación que sigue siendo inexplicable. Es como si con cada roce, nuestras almas se conectaran perfectamente.",
+        "Aunque mi intuición me decía que el camino no sería fácil, al perderme en esa hermosa mirada tuya encontré toda la luz y la esperanza que necesitaba.",
+        "El día que me diste la confianza de ir a tu casa... Al verte con tu mamá, comprendí que no solo me entregabas tu corazón, sino también tu familia, un tesoro que valoro con el alma.",
+        "Esperaba con ansias cada fin de semana. A tu lado mi mundo se detenía y encontraba paz... Fuiste, eres y siempre serás mi lugar seguro.",
+        "Guardo cada instante y cada foto en mi memoria como si hubiera sido ayer. Y así, admirándote, me sigo enamorando de ti un poco más cada día. ❤️",
+        "Nuestra historia continuó... ✨",
+        "Ese primer regalo tuyo... un gesto que me tomó por sorpresa. No sabía cómo reaccionar, solo quería abrazarte fuerte por el simple hecho de haber pensado en mí.",
+        "Y no fue el último. Cada detalle tuyo, cada muestra de cariño, solo lograba que me enamorara de ti más y más.",
+        "Cada sorpresa y cada instante a tu lado se convirtieron en un capítulo invaluable, un testimonio puro de nuestro compromiso y amor.",
+        "Así seguimos llenando el alma de recuerdos: riendo, viajando y caminando siempre de la mano...",
+        "Compartiendo nuestras alegrías, creando emociones nuevas y fortaleciendo esto tan hermoso que nos une.",
+        "Son todas esas pequeñas muestras de amor diario las que me hacen sentir el hombre más afortunado del universo.",
+        "Hasta que un día me dejaste conocer tu mundo real. Un mundo que sentí, que viví y del cual me encariñé profundamente.",
+        "Finalmente, me diste el privilegio más grande de todos: conocer tu núcleo, tu motor y tu vida entera...",
+        "Gracias infinitas por confiar en mí y permitirme compartir con tus hermosas niñas. Soy afortunado de tenerlas en mi vida. ❤️"
+    ];
 
     if (dotsContainer) {
         dotsContainer.innerHTML = "";
@@ -141,6 +171,7 @@ document.querySelectorAll(".carrusel-seccion").forEach(seccion => {
     };
 
     seccion.addEventListener("click", (e) => {
+        // Evita que el click en el botón avance el carrusel
         if (e.target.closest('.btn-generic')) return;
 
         if (current < slides.length - 1) {
@@ -148,60 +179,30 @@ document.querySelectorAll(".carrusel-seccion").forEach(seccion => {
             current++;
             slides[current].classList.add("activa");
 
-            const numSeccion = seccion.getAttribute('data-seccion');
-
-            const textosPorSeccion = {
-                "1": [
-                    "Toca la foto para avanzar... ✨",
-                    "Nuestra primera foto... Recuerdo cuando me pediste tomarla; en el fondo sentí que ahí empezábamos a enmarcar nuestra historia.",
-                    "Tu mano entrelazada con la mía... una sensación que sigue siendo inexplicable. Es como si con cada roce, nuestras almas se conectaran perfectamente.",
-                    "Aunque mi intuición me decía que el camino no sería fácil, al perderme en esa hermosa mirada tuya encontré toda la luz y la esperanza que necesitaba.",
-                    "El día que me diste la confianza de ir a tu casa... Al verte con tu mamá, comprendí que no solo me entregabas tu corazón, sino también tu familia, un tesoro que valoro con el alma.",
-                    "Esperaba con ansias cada fin de semana. A tu lado mi mundo se detenía y encontraba paz... Fuiste, eres y siempre serás mi lugar seguro.",
-                    "Guardo cada instante y cada foto en mi memoria como si hubiera sido ayer. Y así, admirándote, me sigo enamorando de ti un poco más cada día. ❤️"
-                ],
-                "2": [
-                    "Nuestra historia continuó... ✨",
-                    "Ese primer regalo tuyo... un gesto que me tomó por sorpresa. No sabía cómo reaccionar, solo quería abrazarte fuerte por el simple hecho de haber pensado en mí.",
-                    "Y no fue el último. Cada detalle tuyo, cada muestra de cariño, solo lograba que me enamorara de ti más y más.",
-                    "Cada sorpresa y cada instante a tu lado se convirtieron en un capítulo invaluable, un testimonio puro de nuestro compromiso y amor.",
-                    "Así seguimos llenando el alma de recuerdos: riendo, viajando y caminando siempre de la mano...",
-                    "Compartiendo nuestras alegrías, creando emociones nuevas y fortaleciendo esto tan hermoso que nos une.",
-                    "Son todas esas pequeñas muestras de amor diario las que me hacen sentir el hombre más afortunado del universo.",
-                    "Hasta que un día me dejaste conocer tu mundo real. Un mundo que sentí, que viví y del cual me encariñé profundamente.",
-                    "Finalmente, me diste el privilegio más grande de todos: conocer tu núcleo, tu motor y tu vida entera...",
-                    "Gracias infinitas por confiar en mí y permitirme compartir con tus hermosas niñas. Soy afortunado de tenerlas en mi vida. ❤️"
-                ]
-            };
-
+            // Capturamos los elementos que queremos ocultar al final
+            const titulo = seccion.querySelector('.glow-title');
+            const cajaTexto = seccion.querySelector('.info-slide-externo');
             const textoContenedor = seccion.querySelector(".info-slide-externo span");
+            const puntos = seccion.querySelector('.dots');
 
-            if (textoContenedor && textosPorSeccion[numSeccion] && textosPorSeccion[numSeccion][current]) {
-                textoContenedor.style.opacity = 0;
-                setTimeout(() => {
-                    textoContenedor.textContent = textosPorSeccion[numSeccion][current];
-                    textoContenedor.style.opacity = 1;
-                }, 300);
+            // Si llegamos al último slide (el botón)
+            if (current === slides.length - 1) {
+                if (titulo) titulo.style.display = 'none';
+                if (cajaTexto) cajaTexto.style.display = 'none';
+                if (puntos) puntos.style.display = 'none';
+            } else {
+                // Si es una foto normal, cambiamos el texto
+                if (textoContenedor && textos[current]) {
+                    textoContenedor.style.opacity = 0;
+                    setTimeout(() => {
+                        textoContenedor.textContent = textos[current];
+                        textoContenedor.style.opacity = 1;
+                    }, 300); // 300ms de desvanecimiento suave
+                }
             }
-
             actualizarDots();
         }
     });
-
-    const btn = seccion.querySelector(".siguiente-carrusel");
-    if (btn) {
-        btn.addEventListener("click", (e) => {
-            e.stopPropagation();
-            const nextElement = seccion.nextElementSibling;
-            if (nextElement && nextElement.classList.contains('carrusel-seccion')) {
-                seccion.style.display = "none";
-                seccion.classList.remove("visible");
-                nextElement.classList.add("visible");
-                nextElement.style.display = "flex";
-                createParticles();
-            }
-        });
-    }
 });
 
 const screenFinalLogic = {
@@ -209,7 +210,7 @@ const screenFinalLogic = {
         const contD = $('container-despedida');
         const textD = $('text-despedida');
 
-        if (!contD || !textD) return;
+        if (!contD || !textD) return; 
 
         contD.style.display = "flex";
 
@@ -217,8 +218,9 @@ const screenFinalLogic = {
             contD.style.opacity = 1;
             textD.style.animation = `scrollUpLong ${TIMING.final_scroll / 1000}s linear forwards`;
 
-            setTimeout(() => {
-                contD.style.opacity = 0;
+            // NUEVO: Escuchamos cuándo termina de subir el texto de despedida
+            textD.addEventListener('animationend', () => {
+                contD.style.opacity = 0; // Desvanecemos el contenedor del texto
 
                 setTimeout(() => {
                     contD.style.display = "none";
@@ -227,11 +229,11 @@ const screenFinalLogic = {
                     final.style.display = "flex";
                     void final.offsetWidth;
                     final.style.opacity = 1;
-                }, 1500);
+                }, 1500); // 1.5 segundos para la transición limpia a la foto final
+                
+            }, { once: true });
 
-            }, TIMING.final_exit_delay);
-
-        }, 1000);
+        }, 1000); 
     }
 };
 
@@ -246,8 +248,8 @@ function fadeOutAudio(audio, duration) {
         if (audio.volume === prevVolume || audio.volume <= 0) {
             clearInterval(fadeInterval);
             audio.pause();
-            audio.currentTime = 0;
-            audio.volume = 1;
+            audio.currentTime = 0; 
+            audio.volume = 1;      
         }
     }, 100);
 }
@@ -272,7 +274,7 @@ function abrirPista() {
 
     // 2. Apagar DE GOLPE toda la música y videos sin importar el celular
     document.querySelectorAll('audio, video').forEach(media => {
-        media.pause();
+        media.pause(); 
     });
 }
 

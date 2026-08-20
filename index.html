@@ -24,7 +24,7 @@
         <div style="margin-top: 30px; display: flex; flex-direction: column; align-items: center; gap: 20px;">
             <button class="btn-generic" style="display: inline-block; opacity: 0.8; font-size: 1.2rem;"
                 onclick="changeScreen('screen-welcome','screen-prep')">
-                Continuemos ⏭️ PruebaFinal
+                Continuemos ⏭️
             </button>
         </div>
     </div>
@@ -41,22 +41,10 @@
             </div>
 
             <h2 style="color: var(--primary); font-family: 'Caveat', cursive; font-size: 2rem;">Nota Importante</h2>
-            <p style="font-family: 'Georgia', serif; font-size: 0.7rem; line-height: 1.6; color: #eee; margin-top: 10px;">
-                Inicialmente, quería darte este detalle para tu CUMPLEAÑOS. <br> <br>
-                Mi error fue que me apresuré tanto que lo terminé dos meses antes. En mi memoria el día 16 estaba tan
-                presente que con eso bastó para empezar a hacerlo.<br><br>
-                Pero al darme cuenta del mes en que realmente estábamos, quedé 🤡. No sé si fue la emoción del momento,
-                pero perdí por completo la noción del tiempo.
-                <br> <br>
-                Mi mente estaba tan nublada que solo veía el 16 de marzo como la fecha correcta... Pero quién sabe...
-                tal vez en dos meses cambien muchas cosas, tal vez no esté tan convencido de que sea lo mas correcto.
-                <br> <br>
-                En pocas palabras, confundí el 16 de Marzo, con el 16 de Mayo.
-                <br> <br>
-                Aun así, quiero dejarte este detalle desde hoy, espero que cuando llegue el momento, o cuando te sientas
-                preparada... lo abras, es con mucho cariño. <br><br>
-                Si decides abrirlo ahora (no lo hagas), cierra esta ventana, dale al botón de "Saltar detalle" y sigue
-                las indicaciones. (No lo veas en la calle, ni en tu trabajo)<br><br>
+            <p style="font-family: 'Georgia', serif; font-size: 0.95rem; line-height: 1.6; color: #eee; margin-top: 15px;">
+                Este es un detalle hecho con muchísimo cariño y dedicación.<br><br>
+                Por favor, si estás en la calle o en el trabajo, cierra esta ventana y ábrelo cuando estés en un lugar tranquilo.<br><br>
+                Si ya estás en un buen lugar, puedes continuar. ❤️
             </p>
         </div>
     </div>
@@ -160,16 +148,26 @@
             <h1 style="font-size:2.5rem; text-shadow: 2px 2px 15px rgba(0,0,0,1);">Te amamos inmensamente ✨</h1>
         </div>
 
-        <button class="btn-generic" id="btn-next" onclick="changeScreen('screen-main','screen-carrusel')">Continuar</button>
+        <!-- AQUÍ ESTÁ EL NUEVO CONTENEDOR CON EL TEXTO Y EL BOTÓN -->
+        <!-- CONTENEDOR CON EL TEXTO Y EL BOTÓN -->
+        <div id="btn-next" style="display:none; opacity:0; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%; max-width: 400px; text-align: center; z-index: 100; flex-direction: column; align-items: center;">
+            <p style="font-family: 'Georgia', serif; font-size: 1.2rem; color: #fff; text-shadow: 2px 2px 8px rgba(0,0,0,0.9); margin-bottom: 30px; line-height: 1.5;">
+                He recopilado algunas fotos para recordarte lo hermoso de nuestros momentos... y todos los que aún nos faltan por vivir. ✨
+            </p>
+            <!-- Aquí estaba el problema, le faltaba la opacidad 1 al botón interno -->
+            <button class="btn-generic btn-pulse" style="display: inline-block; opacity: 1;" onclick="changeScreen('screen-main','screen-carrusel')">
+                Ver nuestros recuerdos
+            </button>
+        </div>
     </div>
 
-    <!-- PANTALLA CARRUSEL -->
+    <!-- PANTALLA CARRUSEL (AHORA EN UNA SOLA SECCIÓN) -->
     <div id="screen-carrusel" class="screen" style="background: radial-gradient(circle, #1a1a2e, #000);">
         <div id="carrusel-particles" style="position:absolute; width:100%; height:100%; z-index: -1;"></div>
 
-        <!-- Capítulo 1 -->
+        <!-- Única Sección: Nuestra Historia -->
         <section class="carrusel-seccion visible" data-seccion="1" style="display: flex;">
-            <p class="glow-title" style="font-size: 2.5rem; margin-bottom: 10px;">Capítulo 1</p>
+            <p class="glow-title" style="font-size: 2.5rem; margin-bottom: 10px;">Nuestra Historia</p>
 
             <div class="info-slide-externo glass-box"
                 style="padding: 15px; margin-bottom: 20px; width: 85%; max-width: 400px; text-align: center;">
@@ -185,42 +183,26 @@
                 <div class="slide"><img src="Pictures/churos.jpeg" alt="Foto 4"></div>
                 <div class="slide"><img src="Pictures/madrehija.jpeg" alt="Foto 5"></div>
                 <div class="slide"><img src="Pictures/encaje.jpeg" alt="Foto 6"></div>
-                <div class="slide">
-                    <img src="Pictures/espejo.jpeg" alt="Foto 7">
-                    <button class="btn-generic siguiente-carrusel"
-                        style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); display: block; opacity: 1; font-size: 1rem; padding: 10px 20px;">Siguiente
-                        Capítulo</button>
+                <div class="slide"><img src="Pictures/espejo.jpeg" alt="Foto 7"></div>
+                <div class="slide"><img src="Pictures/carro.jpeg" alt="Foto 8"></div>
+                <div class="slide"><img src="Pictures/primer_regalo.jpeg" alt="Foto 9"></div>
+                <div class="slide"><img src="Pictures/segundo_regalo.jpeg" alt="Foto 10"></div>
+                <div class="slide"><img src="Pictures/tercer_regalo.jpeg" alt="Foto 11"></div>
+                <div class="slide"><img src="Pictures/mirador.jpeg" alt="Foto 12"></div>
+                <div class="slide"><img src="Pictures/silvia.jpeg" alt="Foto 13"></div>
+                <div class="slide"><img src="Pictures/gajes.jpeg" alt="Foto 14"></div>
+                <div class="slide"><img src="Pictures/selfie_mahe.jpeg" alt="Foto 15"></div>
+                <div class="slide"><img src="Pictures/cata_espejo.jpeg" alt="Foto 16"></div>
+                <div class="slide"><img src="Pictures/mahe_perfil.jpeg" alt="Foto 17"></div>
+                
+                <!-- Slide 18 (SOLO EL BOTÓN, SIN BORDES NI FONDOS) -->
+                <div class="slide" style="display: flex; justify-content: center; align-items: center; height: 100%; background: transparent; border: none !important; box-shadow: none !important;">
+                    <button class="btn-generic btn-pulse" onclick="changeScreen('screen-carrusel','screen-final')"
+                        style="display: inline-block; opacity: 1; font-size: 1.2rem; padding: 15px 30px;">
+                        Leer mensaje final 💌
+                    </button>
                 </div>
-                <div class="dots"></div>
-            </div>
-        </section>
-
-        <!-- Capítulo 2 -->
-        <section class="carrusel-seccion" data-seccion="2" style="display: none;">
-            <p class="glow-title" style="font-size: 2.5rem; margin-bottom: 10px;">Capítulo 2</p>
-
-            <div class="info-slide-externo glass-box"
-                style="padding: 15px; margin-bottom: 20px; width: 85%; max-width: 400px; text-align: center;">
-                <span style="font-size: 1.1rem; line-height: 1.5; transition: opacity 0.5s ease;">Nuestra historia
-                    continuó... ✨</span>
-            </div>
-
-            <div class="carrusel">
-                <div class="slide activa"><img src="Pictures/carro.jpeg" alt="Foto 1"></div>
-                <div class="slide"><img src="Pictures/primer_regalo.jpeg" alt="Foto 2"></div>
-                <div class="slide"><img src="Pictures/segundo_regalo.jpeg" alt="Foto 3"></div>
-                <div class="slide"><img src="Pictures/tercer_regalo.jpeg" alt="Foto 4"></div>
-                <div class="slide"><img src="Pictures/mirador.jpeg" alt="Foto 5"></div>
-                <div class="slide"><img src="Pictures/silvia.jpeg" alt="Foto 6"></div>
-                <div class="slide"><img src="Pictures/gajes.jpeg" alt="Foto 7"></div>
-                <div class="slide"><img src="Pictures/selfie_mahe.jpeg" alt="Foto 8"></div>
-                <div class="slide"><img src="Pictures/cata_espejo.jpeg" alt="Foto 9"></div>
-                <div class="slide">
-                    <img src="Pictures/mahe_perfil.jpeg" alt="Foto 10">
-                    <button class="btn-generic" onclick="changeScreen('screen-carrusel','screen-final')"
-                        style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); display: block; opacity: 1; font-size: 1rem; padding: 10px 20px;">Leer
-                        mensaje final 💌</button>
-                </div>
+                
                 <div class="dots"></div>
             </div>
         </section>
@@ -264,10 +246,11 @@
             </div>
         </div>
 
+        <!-- PANTALLA FINAL CENTRADA -->
         <div id="final-layout"
-            style="display:none; opacity:0; transition: opacity 2s ease; text-align:center; flex-direction:column; justify-content:space-between; align-items:center; position:fixed; inset:0; background-size:cover; background-position: center; z-index:600; padding: 10vh 20px;">
+            style="display:none; opacity:0; transition: opacity 2s ease; text-align:center; flex-direction:column; justify-content:center; align-items:center; position:fixed; inset:0; background-size:cover; background-position: center; z-index:600; padding: 20px; gap: 40px;">
 
-            <div class="glass-box" style="padding: 20px 30px; margin-top: 5vh;">
+            <div class="glass-box" style="padding: 20px 30px;">
                 <h1 style="font-size:2.2rem; color:#ffffff; text-shadow: 2px 2px 8px rgba(0,0,0,0.9); margin: 0; font-family: 'Georgia', serif;">
                     Te amo, Angie Tatiana ❤️</h1>
                 <p style="font-size: 1.2rem; color: #f0f0f0; font-style: italic; margin-top: 10px; font-family: 'Georgia', serif;">
@@ -275,7 +258,7 @@
             </div>
 
             <button class="btn-generic btn-pulse" onclick="abrirPista()"
-                style="display:inline-block; opacity:1; margin-bottom: 5vh;">
+                style="display:inline-block; opacity:1;">
                 Tengo una sorpresa para ti 🎁
             </button>
         </div>
