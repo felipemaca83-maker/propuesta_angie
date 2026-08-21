@@ -1,6 +1,6 @@
 const $ = id => document.getElementById(id);
 const musica = $('musica');
-const TIMING = { transition: 800, p2_delay: 2000, p2_scroll: 65000, p3_scroll: 55000, final_scroll: 60000, final_exit_delay: 62000 };
+const TIMING = { transition: 800, p2_delay: 2000, p2_scroll: 65000, p3_scroll: 55000, final_scroll: 63000, final_exit_delay: 62000 };
 
 function createParticles() {
     const containers = ['particle-container', 'welcome-particles', 'prep-particles'];
